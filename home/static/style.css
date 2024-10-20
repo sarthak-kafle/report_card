@@ -1,0 +1,62 @@
+.nav {
+    display: flex;
+    justify-content: space-between; /* Space between logo and links */
+    align-items: center; /* Vertically center items */
+    padding: 10px;
+    background-color: #f8f8f8;
+}
+
+.nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #ce3a3a;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.logo img {
+    height: 50px; /* Adjust the height of the logo */
+    width: auto; /* Maintain aspect ratio */
+}
+
+.about {
+    display: flex;
+    justify-content: space-between; /* Use this for layout */
+    align-items: center; /* Vertically center items */
+}
+.image {
+    max-width: 100%;
+    height: auto;
+    margin: 1em auto;
+    display: block;
+    border-radius: 0.5em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Text Styling */
+  
+  .text {
+    margin-top: 1em;
+    font-size: 1em;
+    color: #333;
+    line-height: 1.5em;
+  }
+  
+  .text p {
+    margin-bottom: 1em;
+  }
+  
+  .text a {
+    color: #ce3a3a;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  
+  .text a:hover {
+    color: #a52a2a;
+    text-decoration: underline;
+  }
+  
+
