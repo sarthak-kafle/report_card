@@ -6,6 +6,38 @@
     <title>student_page</title>
 </head>
 <body>
-    
+    <h1>Enter the data for student</h1>
+    <form method="POST" enctype="multipart/form-data">  <!-- Added form tag -->
+        {% csrf_token %}
+        <table class="post">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Student Name</th>
+                    <th scope="col">Student Address</th>
+                    <th scope="col">Student Roll Number</th>
+                    <th scope="col">Student Section</th>
+                    <th scope="col">Maths</th>
+                    <th scope="col">Digital Logic</th>
+                    <th scope="col">Programming</th>
+                    <th scope="col">Discrete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td><input type="text" name="student_name" required></td>
+                    <td><input type="text" name="student_addresh" required></td>
+                    <td><input type="number" name="student_roll_number" required></td>
+                    <td><input type="text" name="student_section" required></td>
+                    <td><input type="number" name="student_marks_math" required></td>
+                    <td><input type="number" name="student_marks_Digital_logic" required></td>
+                    <td><input type="number" name="student_marks_programming" required></td>
+                    <td><input type="number" name="student_marks_discrete" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

@@ -52,17 +52,33 @@ def login_page(request):
     return render(request, 'login_page.html')
 def logout_page(request):
     logout(request)
-@login_required(login_url="login_page")
+@login_required(login_url="/login_page")
 def student_page(request):
-    if request.method=="POST":
-        student_name=request.POST.get("student_name")
-        student_addresh=request.POST.get("student_addresh")
-        student_roll_number=request.POST.get("student_roll_number")
-        student_section=request.POST.get("student_section")
-        student_marks_math=request.POST.get("student_marks_math")
-        student_marks_Digital_logic=request.POST.get("student_marks_Digital_logic")
-        student_marks_programing=request.POST.get("student_marks_programing")
-        student_marks_discrete=request.POST.get("student_marks_discrete")
     
-    return render(request,"student_page.html")
+    if request.method=="POST":
+        data=request.POST
+        student_name=data.get("student_name")
+        student_address=data.get("student_address")
+        student_roll_number=data.get("student_roll_number")
+        student_section=data.get("student_section")
+        student_marks_math=data.get("student_marks_math")
+        student_marks_Digital_logic=data.get("student_marks_Digital_logic")
+        student_marks_programming=data.get("student_marks_programming")
+        student_marks_discrete=data.get("student_marks_discrete")
+        student.objects.create(
+        student_name=student_name,
+        student_address=student_address,
+        student_roll_number=student_roll_number,
+        student_section=student_section,
+        student_marks_math=student_marks_math,
+        student_marks_Digital_logic=student_marks_Digital_logic,
+        student_marks_programming=student_marks_programming,
+        student_marks_discrete=student_marks_discrete,
+        )
+        return redirect(request,"student_page")
+    queryset=student.objects.all()
+    context={"students":queryset}
+
+    
+    return render(request,"student_page.html",context)
 

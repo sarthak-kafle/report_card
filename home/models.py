@@ -11,12 +11,12 @@ class regester(models.Model):
 
 class student(models.Model):
     student_name=models.CharField(max_length=50)
-    student_addresh=models.CharField(max_length=100)
+    student_address=models.CharField(max_length=100)
     student_roll_number=models.IntegerField()
     student_section=models.CharField(max_length=1)
     student_marks_math=models.IntegerField()
     student_marks_Digital_logic=models.IntegerField()
-    student_marks_programing=models.IntegerField()
+    student_marks_programming=models.IntegerField()
     student_marks_discrete=models.IntegerField()
     def __str__(self):
         return self.student_name
