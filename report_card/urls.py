@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("login_page/",login_page,name="login_page"),
     path("register_page/",register_page,name="register_page"),
-    path("student_page/",student_page,name="student_page")
+    path("student_page/",student_page,name="student_page"),
+    path("update/<int:id>",update,name="update"),
     
 ]

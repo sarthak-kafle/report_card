@@ -3,41 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>student_page</title>
+    <title>Data Entry</title>
+    {%load static%}
+    <link rel="stylesheet" href=" {%static 'student.css'%}">
 </head>
 <body>
-    <h1>Enter the data for student</h1>
-    <form method="POST" enctype="multipart/form-data">  <!-- Added form tag -->
-        {% csrf_token %}
-        <table class="post">
+    <h1>Enter Data of Students</h1>
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="student_name" class="form-label">Student Name</label>
+                <input type="text" name="student_name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_address" class="form-label">Student Address</label>
+                <input type="text" name="student_address" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_roll_number" class="form-label">Roll Number</label>
+                <input type="text" name="student_roll_number" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_section" class="form-label">Student Section</label>
+                <input type="text" name="student_section" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_marks_math" class="form-label">Marks in Math</label>
+                <input type="text" name="student_marks_math" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_marks_Digital_logic" class="form-label">Marks in Digital Logic</label>
+                <input type="text" name="student_marks_Digital_logic" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_marks_programming" class="form-label">Marks in Programming</label>
+                <input type="text" name="student_marks_programming" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="student_marks_discrete" class="form-label">Marks in Discrete Mathematics</label>
+                <input type="text" name="student_marks_discrete" class="form-control" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <!-- Table to display submitted data -->
+    <div class="form-container">
+        <h2>Submitted Data</h2>
+        <table>
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Student Name</th>
-                    <th scope="col">Student Address</th>
-                    <th scope="col">Student Roll Number</th>
-                    <th scope="col">Student Section</th>
-                    <th scope="col">Maths</th>
-                    <th scope="col">Digital Logic</th>
-                    <th scope="col">Programming</th>
-                    <th scope="col">Discrete</th>
+                    <th>Student Name</th>
+                    <th>Address</th>
+                    <th>Roll Number</th>
+                    <th>Section</th>
+                    <th>Marks in Math</th>
+                    <th>Marks in Digital Logic</th>
+                    <th>Marks in Programming</th>
+                    <th>Marks in Discrete Mathematics</th>
+                    <th>update</th>
                 </tr>
             </thead>
             <tbody>
+                <!-- Data will be populated here -->
+                {% for student in students %}
                 <tr>
-                    <th scope="row">1</th>
-                    <td><input type="text" name="student_name" required></td>
-                    <td><input type="text" name="student_addresh" required></td>
-                    <td><input type="number" name="student_roll_number" required></td>
-                    <td><input type="text" name="student_section" required></td>
-                    <td><input type="number" name="student_marks_math" required></td>
-                    <td><input type="number" name="student_marks_Digital_logic" required></td>
-                    <td><input type="number" name="student_marks_programming" required></td>
-                    <td><input type="number" name="student_marks_discrete" required></td>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.student_address }}</td>
+                    <td>{{ student.student_roll_number }}</td>
+                    <td>{{ student.student_section }}</td>
+                    <td>{{ student.student_marks_math }}</td>
+                    <td>{{ student.student_marks_digital_logic }}</td>
+                    <td>{{ student.student_marks_programming }}</td>
+                    <td>{{ student.student_marks_discrete }}</td>
+                    <td>
+                        <a href="/update/{{student.id}}"class ="btn btn-success">update</a>
+                    </td>
                 </tr>
+                {% endfor %}
+                
             </tbody>
         </table>
-        <button type="submit">Submit</button>
-    </form>
+    </div>
 </body>
 </html>

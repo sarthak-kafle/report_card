@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate,logout
@@ -52,7 +52,7 @@ def login_page(request):
     return render(request, 'login_page.html')
 def logout_page(request):
     logout(request)
-@login_required(login_url="/login_page")
+@login_required(login_url="login_page")
 def student_page(request):
     
     if request.method=="POST":
@@ -75,10 +75,38 @@ def student_page(request):
         student_marks_programming=student_marks_programming,
         student_marks_discrete=student_marks_discrete,
         )
-        return redirect(request,"student_page")
+        
     queryset=student.objects.all()
     context={"students":queryset}
 
     
     return render(request,"student_page.html",context)
-
+@login_required(login_url="login_page")
+def update(request,id):
+    queryset=get_object_or_404(student,id=id)
+    if request.method=="POST":
+        data=request.POST
+        student_name=data.get("student_name")
+        student_address=data.get("student_address")
+        student_roll_number=data.get("student_roll_number")
+        student_section=data.get("student_section")
+        student_marks_math=data.get("student_marks_math")
+        student_marks_Digital_logic=data.get("student_marks_Digital_logic")
+        student_marks_programming=data.get("student_marks_programming")
+        student_marks_discrete=data.get("student_marks_discrete")
+    
+        queryset.student_name=student_name
+        queryset.student_address=student_address
+        queryset.student_roll_number=student_roll_number
+        queryset.student_section=student_section
+        queryset.student_marks_math=student_marks_math
+        queryset.student_marks_Digital_logic=student_marks_Digital_logic
+        queryset.student_marks_programming=student_marks_programming
+        queryset.student_marks_discrete=student_marks_discrete
+        queryset.save()
+        queryset=student.objects.all()
+        
+        return redirect ("/student_page/")
+    context={"students":queryset}
+    return render(request,"update.html",context)
+   
