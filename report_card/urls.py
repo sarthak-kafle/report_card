@@ -27,5 +27,6 @@ urlpatterns = [
     path("register_page/",register_page,name="register_page"),
     path("student_page/",student_page,name="student_page"),
     path("update/<int:id>",update,name="update"),
+    path("result/<int:id>",result,name="result"),
     
 ]

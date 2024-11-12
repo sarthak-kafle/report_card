@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+</head>
+<body>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>student_name</th>
+                <th>student_address</th>
+                <th>student_roll_number</th>
+                <th>student_section</th>
+                <th>student_marks_math</th>
+                <th>student_marks_Digital_logic</th>
+                <th>student_marks_programming</th>
+                <th>student_marks_discrete</th>
+                <th>percentage</th>
+                <th>Grade</th>
+                <th>pass/fail</th>
+                <th>Total marks</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students%}
+            <tr>
+
+                <td>{{student.student_name}}</td>
+                <td>{{student.student_address}}</td>
+                <td>{{student.student_roll_number}}</td>
+                <td>{{student.student_section}}</td>
+                <td>{{student.student_marks_math}}</td>
+                <td>{{student.student_marks_Digital_logic}}</td>
+                <td>{{student.student_marks_programming}}</td>
+                <td>{{student.student_marks_discrete}}</td>
+                <td>90</td>
+                <td>80</td>
+                <td></td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            z
+        </tbody>
+    </table>
+    
+    
+</body>
+</html>

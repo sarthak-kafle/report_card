@@ -78,7 +78,7 @@ def student_page(request):
         
     queryset=student.objects.all()
     context={"students":queryset}
-
+    
     
     return render(request,"student_page.html",context)
 @login_required(login_url="login_page")
@@ -110,3 +110,6 @@ def update(request,id):
     context={"students":queryset}
     return render(request,"update.html",context)
    
+def result(request,id):
+    return render(request,"result.html")
+
