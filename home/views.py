@@ -50,9 +50,7 @@ def login_page(request):
             return redirect("/student_page/")
 
     return render(request, 'login_page.html')
-def logout_page(request):
-    logout(request)
-@login_required(login_url="login_page")
+@login_required(login_url="/login_page")
 def student_page(request):
     
     if request.method=="POST":
@@ -78,10 +76,9 @@ def student_page(request):
         
     queryset=student.objects.all()
     context={"students":queryset}
-    
-    
     return render(request,"student_page.html",context)
-@login_required(login_url="login_page")
+
+@login_required(login_url="/login_page")
 def update(request,id):
     queryset=get_object_or_404(student,id=id)
     if request.method=="POST":
@@ -109,7 +106,9 @@ def update(request,id):
         return redirect ("/student_page/")
     context={"students":queryset}
     return render(request,"update.html",context)
-   
+
 def result(request,id):
-    return render(request,"result.html")
+    queryset=student.objects.all()
+    context={"students":queryset}
+    return render(request,"result.html",context)
 

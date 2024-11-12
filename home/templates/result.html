@@ -3,48 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>result</title>
+    <title>Result</title>
 </head>
 <body>
     <table border="1">
         <thead>
             <tr>
-                <th>student_name</th>
-                <th>student_address</th>
-                <th>student_roll_number</th>
-                <th>student_section</th>
-                <th>student_marks_math</th>
-                <th>student_marks_Digital_logic</th>
-                <th>student_marks_programming</th>
-                <th>student_marks_discrete</th>
-                <th>percentage</th>
+                <th>Student Name</th>
+                <th>Student Address</th>
+                <th>Student Roll Number</th>
+                <th>Student Section</th>
+                <th>Marks in Math</th>
+                <th>Marks in Digital Logic</th>
+                <th>Marks in Programming</th>
+                <th>Marks in Discrete</th>
+                <th>Percentage</th>
                 <th>Grade</th>
-                <th>pass/fail</th>
-                <th>Total marks</th>
+                <th>Pass/Fail</th>
+                <th>Total Marks</th>
             </tr>
         </thead>
         <tbody>
-            {% for student in students%}
-            <tr>
+            {% for student in students %}
+              <tr>
+                <td>{{ student.student_name }}</td>
+                <td>{{ student.student_address }}</td>
+                <td>{{ student.student_roll_number }}</td>
+                <td>{{ student.student_section }}</td>
+                <td>{{ student.student_marks_math }}</td>
+                <td>{{ student.student_marks_Digital_logic }}</td>
+                <td>{{ student.student_marks_programming }}</td>
+                <td>{{ student.student_marks_discrete }}</td>
 
-                <td>{{student.student_name}}</td>
-                <td>{{student.student_address}}</td>
-                <td>{{student.student_roll_number}}</td>
-                <td>{{student.student_section}}</td>
-                <td>{{student.student_marks_math}}</td>
-                <td>{{student.student_marks_Digital_logic}}</td>
-                <td>{{student.student_marks_programming}}</td>
-                <td>{{student.student_marks_discrete}}</td>
-                <td>90</td>
-                <td>80</td>
-                <td></td>
-                <td></td>
-            </tr>
+                
+                <td>75</td>
+                <td>A</td>
+                <td>Pass</td>
+                <td>400</td>  
+              </tr>
             {% endfor %}
-            z
         </tbody>
     </table>
-    
-    
 </body>
 </html>
