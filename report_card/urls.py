@@ -28,5 +28,6 @@ urlpatterns = [
     path("student_page/",student_page,name="student_page"),
     path("update/<int:id>",update,name="update"),
     path("result/<int:id>",result,name="result"),
+    path("delete/<int:id>",delete,name="delete"),
     
 ]

@@ -108,7 +108,35 @@ def update(request,id):
     return render(request,"update.html",context)
 
 def result(request,id):
-    queryset=student.objects.all()
-    context={"students":queryset}
+    queryset=get_object_or_404(student,id=id)
+    student_marks_Digital_logic=int(queryset.student_marks_Digital_logic) if queryset.student_marks_Digital_logic else 0
+    total=(int(queryset.student_marks_math)+student_marks_Digital_logic+
+           int(queryset.student_marks_discrete)+int(queryset.student_marks_programming))
+    max_numb=400
+    percentage=(total/max_numb)*100
+    if percentage >= 90:
+        Grade = "A"
+    elif percentage >= 80:
+        Grade = "B"
+    elif percentage >= 70:
+        Grade = "C"
+    elif percentage >= 60:
+        Grade = "D"
+    else:
+        Grade = "F"
+    if percentage<40:
+        result="fail"
+    else:
+        result="pass"
+    queryset=student.objects.get(id=id)
+    context={"student":queryset,"total":total,"max_numb":max_numb,
+             "percentage":percentage,"result":result,"Grade":Grade}
+    
     return render(request,"result.html",context)
+
+def delete(request,id):
+    queryset=student.objects.get(id=id)
+    queryset.delete()
+    return redirect("/student_page/")
+
 

@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for student in students %}
+           
               <tr>
                 <td>{{ student.student_name }}</td>
                 <td>{{ student.student_address }}</td>
@@ -36,12 +36,12 @@
                 <td>{{ student.student_marks_discrete }}</td>
 
                 
-                <td>75</td>
-                <td>A</td>
-                <td>Pass</td>
-                <td>400</td>  
+                <td>{{percentage}}</td>
+                <td>{{ precentage }}</td>
+                <td>{{Grade}}</td>
+                <td>{{max_numb}}</td>  
               </tr>
-            {% endfor %}
+            
         </tbody>
     </table>
 </body>
