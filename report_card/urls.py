@@ -29,5 +29,6 @@ urlpatterns = [
     path("update/<int:id>",update,name="update"),
     path("result/<int:id>",result,name="result"),
     path("delete/<int:id>",delete,name="delete"),
+    path("logout_page/",logout_page,name="logout_page"),
     
 ]

@@ -138,5 +138,7 @@ def delete(request,id):
     queryset=student.objects.get(id=id)
     queryset.delete()
     return redirect("/student_page/")
-
+def logout_page(request):
+    logout(request)
+    return redirect("/index/")
 
