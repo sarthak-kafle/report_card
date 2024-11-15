@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
+    <title>Graphical representation </title>
 </head>
 <body>
     <table border="1">
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-           
+           {% for student in students %}
               <tr>
                 <td>{{ student.student_name }}</td>
                 <td>{{ student.student_address }}</td>
@@ -34,13 +34,14 @@
                 <td>{{ student.student_marks_Digital_logic }}</td>
                 <td>{{ student.student_marks_programming }}</td>
                 <td>{{ student.student_marks_discrete }}</td>
-
-                
-                <td>{{percentage}}</td>
-                <td>{{Grade}}</td>
-                <td>{{result}}</td>
-                <td>{{max_numb}}</td>  
+                {% endfor %}
+                {% for data in student_data%}
+                <td>{{data.percentage}}</td>
+                <td>{{data.Grade}}</td>
+                <td>{{data.result}}</td>
+                <td>{{data.max_numb}}</td>  
               </tr>
+              {%endfor%}
             
         </tbody>
     </table>

@@ -52,7 +52,7 @@
     <!-- Table to display submitted data -->
     <div class="form-container">
         <h2>Submitted Data</h2>
-        <table>
+        <table class="submitted_table">
             <thead>
                 <tr>
                     <th>Student Name</th>
@@ -64,6 +64,8 @@
                     <th>Marks in Programming</th>
                     <th>Marks in Discrete Mathematics</th>
                     <th>update</th>
+                    <th>Result</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,7 +77,7 @@
                     <td>{{ student.student_roll_number }}</td>
                     <td>{{ student.student_section }}</td>
                     <td>{{ student.student_marks_math }}</td>
-                    <td>{{ student.student_marks_digital_logic }}</td>
+                    <td>{{ student.student_marks_Digital_logic }}</td>
                     <td>{{ student.student_marks_programming }}</td>
                     <td>{{ student.student_marks_discrete }}</td>
                     <td>

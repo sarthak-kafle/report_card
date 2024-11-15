@@ -142,3 +142,46 @@ def logout_page(request):
     logout(request)
     return redirect("/index/")
 
+def piechart(request):
+
+    
+    queryset = student.objects.all()
+    student_data = []
+
+    for student_obj in queryset:
+        student_marks_Digital_logic = int(student_obj.student_marks_Digital_logic) if student_obj.student_marks_Digital_logic else 0
+        total = (
+            int(student_obj.student_marks_math) +
+            student_marks_Digital_logic +
+            int(student_obj.student_marks_discrete) +
+            int(student_obj.student_marks_programming)
+        )
+        max_numb = 400
+        percentage = (total / max_numb) * 100
+
+        if percentage >= 90:
+            Grade = "A"
+        elif percentage >= 80:
+            Grade = "B"
+        elif percentage >= 70:
+            Grade = "C"
+        elif percentage >= 60:
+            Grade = "D"
+        else:
+            Grade = "F"
+
+        result = "pass" if percentage >= 40 else "fail"
+
+        # Append the student's data to the list
+        student_data.append({
+            "student": student_obj,
+            "total": total,
+            "percentage": percentage,
+            "Grade": Grade,
+            "result": result,
+        })
+
+    context = {"student_data": student_data,"students":queryset}
+    return render(request, "piechart.html", context)
+
+

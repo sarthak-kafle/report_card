@@ -30,5 +30,7 @@ urlpatterns = [
     path("result/<int:id>",result,name="result"),
     path("delete/<int:id>",delete,name="delete"),
     path("logout_page/",logout_page,name="logout_page"),
+    path("piechart/",piechart,name="piechart"),
+    
     
 ]
