@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Graphical representation </title>
+    <title>Graphical Representation</title>
 </head>
 <body>
-    <table border="1">
+    <h1>Graphical Representation of Student Performance</h1>
+    
+    <!-- Student Data Table -->
+    <table border="1" cellpadding="5" cellspacing="0">
         <thead>
             <tr>
                 <th>Student Name</th>
@@ -24,26 +27,27 @@
             </tr>
         </thead>
         <tbody>
-           {% for student in students %}
-              <tr>
-                <td>{{ student.student_name }}</td>
-                <td>{{ student.student_address }}</td>
-                <td>{{ student.student_roll_number }}</td>
-                <td>{{ student.student_section }}</td>
-                <td>{{ student.student_marks_math }}</td>
-                <td>{{ student.student_marks_Digital_logic }}</td>
-                <td>{{ student.student_marks_programming }}</td>
-                <td>{{ student.student_marks_discrete }}</td>
-                {% endfor %}
-                {% for data in student_data%}
-                <td>{{data.percentage}}</td>
-                <td>{{data.Grade}}</td>
-                <td>{{data.result}}</td>
-                <td>{{data.max_numb}}</td>  
-              </tr>
-              {%endfor%}
-            
+            {% for data in student_data %}
+            <tr>
+                <td>{{ data.student.student_name }}</td>
+                <td>{{ data.student.student_address }}</td>
+                <td>{{ data.student.student_roll_number }}</td>
+                <td>{{ data.student.student_section }}</td>
+                <td>{{ data.student.student_marks_math }}</td>
+                <td>{{ data.student.student_marks_Digital_logic }}</td>
+                <td>{{ data.student.student_marks_programming }}</td>
+                <td>{{ data.student.student_marks_discrete }}</td>
+                <td>{{ data.percentage }}</td>
+                <td>{{ data.Grade }}</td>
+                <td>{{ data.result }}</td>
+                <td>{{ data.total }}</td>
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
+    
+    <!-- Pie Chart -->
+    <h2>Pie Chart of Percentage Distribution</h2>
+    <img src="data:image/png;base64,{{ chart_data }}" alt="Pie Chart">
 </body>
 </html>

@@ -20,7 +20,7 @@ class student(models.Model):
     def __str__(self):
         return self.student_name
     
-    
+
 #class Department(models.Model):
    # Departmant=models.CharField(max_length=50)
    # def __str__(self):

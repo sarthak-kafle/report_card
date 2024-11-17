@@ -4,6 +4,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate,logout
 from django.contrib.auth.decorators import login_required
 from .models import *
+from matplotlib import pyplot as plt
+from io import BytesIO
+import base64
+import operator
 
 
 def index(request):
@@ -143,10 +147,13 @@ def logout_page(request):
     return redirect("/index/")
 
 def piechart(request):
-
-    
     queryset = student.objects.all()
     student_data = []
+    count=0
+    count1=0
+    count2=0
+    count3=0
+    count4=0
 
     for student_obj in queryset:
         student_marks_Digital_logic = int(student_obj.student_marks_Digital_logic) if student_obj.student_marks_Digital_logic else 0
@@ -161,14 +168,19 @@ def piechart(request):
 
         if percentage >= 90:
             Grade = "A"
+            count=count+1
         elif percentage >= 80:
             Grade = "B"
+            count1=count1+1
         elif percentage >= 70:
             Grade = "C"
+            count2=count2+1
         elif percentage >= 60:
             Grade = "D"
+            count3=count3+1
         else:
             Grade = "F"
+            count4=count4+1
 
         result = "pass" if percentage >= 40 else "fail"
 
@@ -180,8 +192,32 @@ def piechart(request):
             "Grade": Grade,
             "result": result,
         })
+    
+    data_labels = [">90%", ">80%", ">70%", ">60%", "Fail"]
+    sales = [count, count1, count2, count3, count4]
+    my_explode = [0.2, 0, 0, 0, 0]
+    my_colors = ["green", "blue", "yellow", "red", "orange"]
 
-    context = {"student_data": student_data,"students":queryset}
+    # Create the pie chart
+    plt.figure(figsize=(8, 6))
+    plt.pie(sales, labels=data_labels, explode=my_explode, shadow=True, colors=my_colors, autopct='%1.1f%%')
+    plt.title("Percentage Scores of Students")
+
+    # Save the chart to a string buffer
+    buf = BytesIO()
+    plt.savefig(buf, format="png")
+    buf.seek(0)
+    chart_data = base64.b64encode(buf.getvalue()).decode('utf-8')
+    buf.close()
+    plt.close()
+
+    # Pass data to the template
+    context = {
+        "student_data": student_data,
+        "students": queryset,
+        "count": count,
+        "chart_data": chart_data,
+    }
     return render(request, "piechart.html", context)
 
 
