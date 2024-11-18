@@ -7,7 +7,7 @@ from .models import *
 from matplotlib import pyplot as plt
 from io import BytesIO
 import base64
-import operator
+
 
 
 def index(request):
@@ -148,7 +148,7 @@ def logout_page(request):
 
 def piechart(request):
     queryset = student.objects.all()
-    student_data = []
+    student_data =[]
     count=0
     count1=0
     count2=0
@@ -219,5 +219,9 @@ def piechart(request):
         "chart_data": chart_data,
     }
     return render(request, "piechart.html", context)
+
+def new_func():
+    student_data = []
+    return student_data
 
 
