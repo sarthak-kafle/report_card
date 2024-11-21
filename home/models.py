@@ -25,3 +25,6 @@ class student(models.Model):
    # Departmant=models.CharField(max_length=50)
    # def __str__(self):
    #     return self.Departmant
+class data_import_form_excel(models.Model):
+     file=models.FileField(upload_to="excel")
+     

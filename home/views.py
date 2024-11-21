@@ -7,7 +7,9 @@ from .models import *
 from matplotlib import pyplot as plt
 from io import BytesIO
 import base64
-
+import pandas as pd
+from django.http import JsonResponse
+from django.conf import settings
 
 
 def index(request):
@@ -225,3 +227,57 @@ def new_func():
     return student_data
 
 
+def data_export(request):
+    objs=student.objects.all()
+    data=[]
+    for obj in objs:
+       data.append( {
+           "student_name":obj.student_name,
+           "student_address":obj.student_address,
+           "student_roll_number":obj.student_roll_number,
+           "student_section":obj.student_section,
+           "student_marks_math":obj.student_marks_math,
+           "student_marks_Digital_logic":obj.student_marks_Digital_logic,
+           "student_marks_programming":obj.student_marks_programming,
+           "student_marks_discrete":obj.student_marks_discrete,
+
+
+       }
+        )
+    pd.DataFrame(data).to_excel('student.xlsx')
+    return JsonResponse({
+        "status":200
+    }) 
+  
+
+def import_data(request):
+    if request.method=="POST":
+        file=request.FILES["files"]
+        data_import_form_excel.objects.create(
+            file=file
+        )
+        path=file.file
+        print(f"{settings.BASE_DIR}f{path}")
+        df=pd.read_excel(path)
+        print(df)
+       
+        #student.objects.create(
+        #        student_name=df["student_name"],
+        #        student_address=df["student_address"],
+        #        student_roll_number=df["student_roll_number"],
+        #        student_section=df["student_section"],
+        #        student_marks_math=df["student_marks_math"],
+        #        student_marks_Digital_logic=df["student_marks_Digital_logic"],
+        #        student_marks_programming=df["student_marks_programming"],
+        #        student_marks_discrete=df["student_marks_discrete"]
+        #
+                
+
+        #  )
+
+    return render (request,"import_data.html")
+
+
+
+
+    
