@@ -31,8 +31,8 @@ urlpatterns = [
     path("delete/<int:id>",delete,name="delete"),
     path("logout_page/",logout_page,name="logout_page"),
     path("piechart/",piechart,name="piechart"),
-    path("data_export",data_export,name="data_export"),
-    path("import_data",import_data,name="import_data"),
+    path("data_export/",data_export,name="data_export"),
+    path("import_data/",import_data,name="import_data"),
 
     
     

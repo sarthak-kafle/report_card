@@ -8,7 +8,6 @@ from matplotlib import pyplot as plt
 from io import BytesIO
 import base64
 import pandas as pd
-from django.http import JsonResponse
 from django.conf import settings
 
 
@@ -213,7 +212,7 @@ def piechart(request):
     buf.close()
     plt.close()
 
-    # Pass data to the template
+     
     context = {
         "student_data": student_data,
         "students": queryset,
@@ -221,10 +220,6 @@ def piechart(request):
         "chart_data": chart_data,
     }
     return render(request, "piechart.html", context)
-
-def new_func():
-    student_data = []
-    return student_data
 
 
 def data_export(request):
@@ -245,9 +240,7 @@ def data_export(request):
        }
         )
     pd.DataFrame(data).to_excel('student.xlsx')
-    return JsonResponse({
-        "status":200
-    }) 
+    return render(request,"data_export.html")
   
 
 def import_data(request):
@@ -260,20 +253,24 @@ def import_data(request):
         print(f"{settings.BASE_DIR}f{path}")
         df=pd.read_excel(path)
         print(df)
-       
-        #student.objects.create(
-        #        student_name=df["student_name"],
-        #        student_address=df["student_address"],
-        #        student_roll_number=df["student_roll_number"],
-        #        student_section=df["student_section"],
-        #        student_marks_math=df["student_marks_math"],
-        #        student_marks_Digital_logic=df["student_marks_Digital_logic"],
-        #        student_marks_programming=df["student_marks_programming"],
-        #        student_marks_discrete=df["student_marks_discrete"]
-        #
-                
 
-        #  )
+
+    for _, d in df.iterrows():
+      # Replace NaN with default values or skip
+      digital_logic_marks = d["student_marks_Digital_logic"] if pd.notna(d["student_marks_Digital_logic"]) else 0
+    
+      student.objects.create(
+        student_name=d["student_name"],
+        student_address=d["student_address"],
+        student_roll_number=d["student_roll_number"],
+        student_section=d["student_section"],
+        student_marks_math=d["student_marks_math"] if pd.notna(d["student_marks_math"]) else 0,
+        student_marks_Digital_logic=digital_logic_marks,
+        student_marks_programming=d["student_marks_programming"] if pd.notna(d["student_marks_programming"]) else 0,
+        student_marks_discrete=d["student_marks_discrete"] if pd.notna(d["student_marks_discrete"]) else 0,
+                            )
+
+
 
     return render (request,"import_data.html")
 
