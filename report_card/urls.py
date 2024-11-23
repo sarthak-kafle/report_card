@@ -33,6 +33,7 @@ urlpatterns = [
     path("piechart/",piechart,name="piechart"),
     path("data_export/",data_export,name="data_export"),
     path("import_data/",import_data,name="import_data"),
+    path("report_card/<int:id>",result,name="report_card"),
 
     
     

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect,get_object_or_404
+from django.shortcuts import render, redirect,get_object_or_404,HttpResponse
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate,logout
@@ -9,6 +9,8 @@ from io import BytesIO
 import base64
 import pandas as pd
 from django.conf import settings
+from weasyprint import HTML
+
 
 
 def index(request):
@@ -137,7 +139,9 @@ def result(request,id):
     context={"student":queryset,"total":total,"max_numb":max_numb,
              "percentage":percentage,"result":result,"Grade":Grade}
     
-    return render(request,"result.html",context)
+    return render(request, "report_card.html", context)
+    
+    
 
 def delete(request,id):
     queryset=student.objects.get(id=id)
@@ -146,6 +150,7 @@ def delete(request,id):
 def logout_page(request):
     logout(request)
     return redirect("/index/")
+
 
 def piechart(request):
     queryset = student.objects.all()
@@ -273,6 +278,8 @@ def import_data(request):
 
 
     return render (request,"import_data.html")
+
+
 
 
 

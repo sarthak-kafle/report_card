@@ -66,8 +66,9 @@
                     <th>Marks in Programming</th>
                     <th>Marks in Discrete Mathematics</th>
                     <th>update</th>
-                    <th>Result</th>
                     <th>Delete</th>
+                    <th>Report_card</th>
+
                 </tr>
             </thead>
             <tbody>
@@ -85,12 +86,13 @@
                     <td>
                         <a href="/update/{{student.id}}"class ="btn btn-success">update</a>
                     </td>
-                    <td>
-                        <a href="/result/{{student.id}}" class="btn btn-success"> result</a>
-                    </td>
+
                     <td>
                            <a href="/delete/{{student.id}}" class="btn btn-success">Delete</a>
 
+                    </td>
+                    <td>
+                        <a href="/report_card/{{student.id}}" class="btn btn-success">report_card</a>
                     </td>
                 </tr>
                 {% endfor %}

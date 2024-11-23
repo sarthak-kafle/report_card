@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Card</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'report_card.css' %}">
+
+</head>
+<body>
+    <div class="report-card">
+        <h1>Report Card</h1>
+        
+        <div class="student-info">
+
+            <p><strong>Student Name:</strong>{{student.student_name}}</p>
+            <p><strong>Roll Number:</strong> {{student.student_roll_number}}</p>
+            <p><strong>Section:</strong>{{student.student_section}}</p>
+            <p><strong>Address:</strong>{{student.student_address}}</p>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Marks Obtained</th>
+                    <th>Total Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Mathematics</td>
+                    <td>{{student.student_marks_math}}</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>Programming c++</td>
+                    <td> {{student.student_marks_programming}}</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>Discrete Mathematics</td>
+                    <td>{{student.student_marks_discrete}}</td>
+                    <td>100</td>
+                </tr>
+                <tr>
+                    <td>Digital Logic</td>
+                    <td>{{student.student_marks_Digital_logic}}</td>
+                    <td>100</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            <p><strong>Total Marks Obtained: </strong>{{total}} </p>
+            <p><strong>Percentage: </strong> {{percentage}}%</p>
+            <p><strong>Grade: </strong>{{Grade}}</p>
+            <p><strong>Result: </strong>{{result}}</p>
+            
+        </div>
+    </div>
+
+</body>
+</html>
